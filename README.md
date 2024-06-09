@@ -1,2 +1,3 @@
 # Study
- Códigos para testar conceitos de programação
+Códigos para testar conceitos de programação.
+
