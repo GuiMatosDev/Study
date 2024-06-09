@@ -1,2 +1,2 @@
 # Study
- Codes to test programming concepts
+ Códigos para testar conceitos de programação
