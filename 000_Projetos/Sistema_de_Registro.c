@@ -13,6 +13,8 @@ int registro() //Função responsável por cadastrar o usuário no sistema
 	char cargo[40];
 	int controle = 0;
 	int loop = 0;
+	char senha[10];
+	
 	
 	setlocale(LC_ALL, "Portuguese"); // Ajustando para português
 	
@@ -63,7 +65,7 @@ int registro() //Função responsável por cadastrar o usuário no sistema
 		break;
 		
 		case 2:
-		main();
+		return 0;
 		break;
 	}
 }
@@ -116,7 +118,7 @@ int consulta() //Função responsável por consultar os usuários no sistema
 				break;
 				
 				case 2:
-				main();
+				return 0;
 				break;
 			}
 		}	
@@ -166,13 +168,13 @@ int deletar()
 			break;
 			
 			case 2:
-			main();
+			return 0;
 			break;
 		}
 	}
 }
 
-int main() //Função Principal
+menu() //Menu Pinrcipal
 {
 	//Definindo Variáveis
 	int controle = 0;
@@ -186,9 +188,7 @@ int main() //Função Principal
 		setlocale(LC_ALL, "Portuguese"); // Ajustando para português
 		
 		//Menu incial
-		printf("============================================\n");
-		printf("              Cartório - EBAC\n");
-		printf("============================================\n");
+		printf("============================================\n              Cartório - EBAC\n============================================\n");
 		printf("[1] Registrar Nomes \n[2] Consultar Nomes\n[3] Deletar Nomes\n[4] Sair\n");
 		printf("============================================\n");
 		printf("Escolha a opção desejada: ");
@@ -211,7 +211,7 @@ int main() //Função Principal
 			break;
 			
 			case 4:
-			return 0;
+			exit(0); //encerra de uma vez o progama ao contrário do return0 que encerra a função
 			break;
 			
 			default:
@@ -219,5 +219,109 @@ int main() //Função Principal
 			system("pause");
 			break;		
 		}
-	}	
+	}
+}
+
+int main() //Função Principal: Validação de Usuário
+{
+	setlocale(LC_ALL, "Portuguese"); // Ajustando para português
+	
+	//Declaração de Variáveis
+	char senha[40];
+	char validacao[40];
+	int controle=0;
+	int auxiliar=0;
+	char nova[40];
+	char usuario[40];
+	char conteudo[200];
+	char vad [40];
+	char teste [40];
+	
+	for(controle=0; controle=1;controle++)
+	{
+		system("cls");
+		printf("============================================\n              Cartório - EBAC\n============================================\n");
+		printf("[1]Entrar\n[2]Criar Conta\n[3]Sair\n============================================\nDigite a opção desejada: ");
+		scanf("%d", &auxiliar);
+		
+		
+		switch(auxiliar) //Validação da senha
+		{
+			case 1:
+			system("cls");
+			printf("============================================\n              Cartório - EBAC\n============================================\n");
+			printf("Digite o usuário: ");
+			scanf("%s", &usuario);
+			printf("Digite sua senha: ");
+			scanf("%s", &senha);
+			
+			//Procura do arquivo
+			FILE *file;
+			file = fopen(usuario, "r"); 
+			
+			char copia[99];
+			
+			fseek(file,0,SEEK_SET);
+			fread(copia, 99*sizeof(char),1,file);
+			printf("%s", copia);
+			
+			//while(fgets(vad,40,file) != NULL) //Copia o conteudo do arquivo usario para a variavel vad
+			//{	
+			//}
+			
+			strcpy(vad,senha);
+			
+			printf("%s\n", copia);
+			printf("%s\n", vad);
+			printf("%s\n", senha);
+			system("pause");
+			
+			
+		
+		
+			if(copia == senha) //Validação de Usuário e Senha 
+			{
+				printf("Senha Correta");
+				menu();
+				if (menu != 0)
+				{
+					return 0;
+				}
+			}
+			else
+			{
+				printf("Senha Incorreta\n");
+			}
+			fclose(file);
+			break;
+			
+			case 2:
+			system("cls");
+			printf("====================Criação de Usuário==========================\n");
+			printf("Digite o usuário: ");
+			scanf("%s", &usuario);
+			printf("Digite nova senha: ");
+			scanf("%s", &nova);
+			
+			//Cria um arquivo com o nome do usuário e armazena a senha dentro do arquivo
+			file = fopen(usuario, "w");
+			fprintf(file, nova);
+			fclose(file);
+			
+			printf("Senha Criada Com Sucesso!!\n");
+			system("pause");
+			main();
+			break;
+			
+			case 3:
+			return 0;	
+			break;
+			
+		}
+		
+		printf("============================================\n");
+		printf("Não recoheci seu comando, vou direcionar novamente ao MENU\n");
+		system("pause");
+		
+	}
 }
