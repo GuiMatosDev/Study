@@ -74,6 +74,7 @@ int consulta() //Função responsável por consultar os usuários no sistema
 	char conteudo[200];
 	int auxiliar = 0;
 	int controle = 0;
+	int c = 0;
 	
 	setlocale(LC_ALL, "Portuguese"); // Ajustando para português
 
@@ -92,8 +93,19 @@ int consulta() //Função responsável por consultar os usuários no sistema
 		{
 			//Falha monstra mensagem de erro e volta para digitar CPF
 			system("cls");
-			printf("Não consegui localizar o usuário, prossiga para tentar novamente\n\n");
-			system("pause");
+			fclose(file);
+			printf("Não consegui localizar o usuário.\n[1] Tentar novamente\n[2] Menu\nDigite a opção desejada:");
+			scanf("%d", &c);
+			if (c == 1)
+			{
+				printf("Menu");
+			}
+			else
+			{
+				return 0;
+			}
+			
+			
 		}
 		else
 		{
@@ -103,6 +115,7 @@ int consulta() //Função responsável por consultar os usuários no sistema
 			{	
 				printf("%s", conteudo);	
 			}
+			fclose(file);
 					
 			//Decisão para inserir nova consulta ou voltar ao menu
 			printf("\n============================================\n");
@@ -120,6 +133,7 @@ int consulta() //Função responsável por consultar os usuários no sistema
 				break;
 			}
 		}	
+		
 	}	
 }
 
@@ -238,7 +252,7 @@ int main() //Função Principal: Validação de Usuário
 	{
 		system("cls"); 
 		//Menu Inicial
-		printf("============================================\n              Cartório -     \n============================================\n");
+		printf("============================================\n              Cartório - EBAC\n============================================\n");
 		printf("[1]Entrar\n[2]Criar Conta\n[3]Sair\n============================================\nDigite a opção desejada: ");
 		scanf("%d", &auxiliar);
 		
