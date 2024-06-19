@@ -12,8 +12,6 @@ int registro() //Função responsável por cadastrar o usuário no sistema
 	char sobrenome[40];
 	char cargo[40];
 	int controle = 0;
-	int loop = 0;
-	char senha[10];
 	
 	
 	setlocale(LC_ALL, "Portuguese"); // Ajustando para português
@@ -228,26 +226,26 @@ int main() //Função Principal: Validação de Usuário
 	
 	//Declaração de Variáveis
 	char senha[40];
-	char validacao[40];
+	char usuario[40];
+	char vad [40];
+	char nova[40];
 	int controle=0;
 	int auxiliar=0;
-	char nova[40];
-	char usuario[40];
-	char conteudo[200];
-	char vad [40];
-	char teste [40];
+	int teste = 0;
+
 	
-	for(controle=0; controle=1;controle++)
+	for(controle=0; controle=1;) //Loop infinito
 	{
-		system("cls");
-		printf("============================================\n              Cartório - EBAC\n============================================\n");
+		system("cls"); 
+		//Menu Inicial
+		printf("============================================\n              Cartório -     \n============================================\n");
 		printf("[1]Entrar\n[2]Criar Conta\n[3]Sair\n============================================\nDigite a opção desejada: ");
 		scanf("%d", &auxiliar);
 		
 		
-		switch(auxiliar) //Validação da senha
+		switch(auxiliar) //Escolha
 		{
-			case 1:
+			case 1: //Accesso
 			system("cls");
 			printf("============================================\n              Cartório - EBAC\n============================================\n");
 			printf("Digite o usuário: ");
@@ -259,30 +257,18 @@ int main() //Função Principal: Validação de Usuário
 			FILE *file;
 			file = fopen(usuario, "r"); 
 			
-			char copia[99];
-			
-			fseek(file,0,SEEK_SET);
-			fread(copia, 99*sizeof(char),1,file);
-			printf("%s", copia);
-			
-			//while(fgets(vad,40,file) != NULL) //Copia o conteudo do arquivo usario para a variavel vad
-			//{	
-			//}
-			
-			strcpy(vad,senha);
-			
-			printf("%s\n", copia);
-			printf("%s\n", vad);
-			printf("%s\n", senha);
-			system("pause");
-			
+			while(fgets(vad,40,file) != NULL) //Copia o conteudo do arquivo usario para a variavel vad
+			{	
+			}
 			
 		
-		
-			if(copia == senha) //Validação de Usuário e Senha 
+			teste = ("%d",strncmp(vad,senha,20)); //A variável teste recebe a comparação das duas strings
+			
+					
+			if(teste == 0) //Validação - Teste= 0 verdadeiro, Teste >= 0 igual a falso
 			{
 				printf("Senha Correta");
-				menu();
+				menu(); //
 				if (menu != 0)
 				{
 					return 0;
@@ -319,7 +305,7 @@ int main() //Função Principal: Validação de Usuário
 			
 		}
 		
-		printf("============================================\n");
+		//Caso não reconheça em qualquer parte o comando
 		printf("Não recoheci seu comando, vou direcionar novamente ao MENU\n");
 		system("pause");
 		
