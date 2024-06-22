@@ -1,3 +1,3 @@
 print("Olá, mundo!")
 
-teste = int(input("kk"))
+teste = int(input("kkk"))
