@@ -1,3 +1,3 @@
-# Study
-Códigos para testar conceitos de programação.
+# Estudos
+Projetos e exercícios para estudar algum conceito que estou aprendendo.
 
