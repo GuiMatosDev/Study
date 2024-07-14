@@ -1,3 +1,5 @@
+#Programa capaz de criar, apagar e consultar registros na memória
+
 #include <stdio.h> //Bliblioteca de comunicação com o usuário
 #include <stdlib.h> //Bliblioteca focada em alocação de memória
 #include <locale.h> //Biblioteca de aloção de texto por região
